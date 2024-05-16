@@ -94,7 +94,7 @@ public class Nevera extends Electrodomesticos {
         this.precioFinalNevera = precioFinalNevera;
     }
 
-    // ----Métodos----
+    // ----Inicio Métodos----
     public void CalccostoMantenimiento() {
         costoMantNev = super.CalcprecioBase() * 0.09;
     }
@@ -108,14 +108,13 @@ public class Nevera extends Electrodomesticos {
             precioFinalNevera += 10000;
         }
     }
+    // ---Fin métodos----
 
     @Override
     public String toString() {
-        return "Nevera [funcion dual=" + funcionDual + ", capacidad x litros=" + capacidadLitros
-                + ", consumo mínimo energético=" + consumoMinimoEnergetico + ", tecnología de frio=" + tecnoDeFrio
-                + ", tipo panel de control=" + tipoPaneldeControl + ", porcentaje mantenimiento=" + porcMantNev
-                + ", costo mantenimiento="
-                + costoMantNev + ", precio final=" + precioFinalNevera + "]";
+        return "Nevera [funcion dual=" + funcionDual + ", marca =" + marca + ", capacidad x litros=" + capacidadLitros
+                + ", tecnología de frio=" + tecnoDeFrio + ", tipo panel de control="
+                + tipoPaneldeControl + ", precio final=" + precioFinalNevera + "]";
     }
 
 }

@@ -142,5 +142,5 @@ public class GestionLicuadora extends Licuadora {
             throw new IllegalStateException("La lista de licuadoras está vacía");
         }
     }
-
+    // ---Fin filtros----
 }

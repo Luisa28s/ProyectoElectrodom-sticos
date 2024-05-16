@@ -83,7 +83,7 @@ public class Licuadora extends Electrodomesticos {
         this.precioFinalLicuadora = precioFinalLicuadora;
     }
 
-    // ----Métodos----
+    // ----Inicio Métodos----
     public void CalccostoMantenimiento() {
         costoMantLic = super.CalcprecioBase() * 0.04;
     }
@@ -100,12 +100,13 @@ public class Licuadora extends Electrodomesticos {
             precioFinalLicuadora += 3000;
         }
     }
+    // ---Fin métodos---
 
     @Override
     public String toString() {
-        return "Licuadora [numero de aspas=" + numAspas + ", numero de velocidades=" + numVelocidades
-                + ", material de vaso="
-                + materialVaso + ", voltaje=" + voltaje + ", costo de mantenimiento=" + costoMantLic + ", precio final="
+        return "Licuadora [numero de aspas=" + numAspas + ", marca= " + marca + ", numero de velocidades="
+                + numVelocidades
+                + ", material de vaso=" + materialVaso + ", costo de mantenimiento=" + costoMantLic + ", precio final="
                 + precioFinalLicuadora + "]";
     }
 

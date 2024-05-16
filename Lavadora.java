@@ -93,15 +93,18 @@ public class Lavadora<T, U> extends Electrodomesticos {
         this.precioFinalLavadora = precioFinalLavadora;
     }
 
-    // ----Métodos----
+    // ----Inicio Métodos----
     public void CalccostoMantenimiento() {
-        totalMantenimientoLav = precioBase * porcMantenimiento;
+        totalMantenimientoLav = precioBase * 0.08;
     }
 
     public void CalcprecioFinal() {
+        precioFinalLavadora = super.CalcprecioBase();
         if (programasdeLavado > 5) {
             precioFinalLavadora += 30000;
+        } else {
+            precioFinalLavadora += 20000;
         }
     }
-
+    // ---Fin métodos----
 }

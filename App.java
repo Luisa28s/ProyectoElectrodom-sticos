@@ -162,8 +162,8 @@ public class App {
                             System.out.println("           3. Buscar              ");
                             System.out.println("          4. Modificar            ");
                             System.out.println("     5. Ver info de neveras        ");
-                            System.out.println("6. Filtrar por eficiencia energética");
-                            System.out.println("   7. Filtrar por función dual     ");
+                            System.out.println("   6. Filtrar por función dual     ");
+                            System.out.println("7. Filtrar por eficiencia energética");
                             System.out.println("   8. Volver al menú principal      ");
                             System.out.println("-------------------------------------");
                             int opcNevera = teclado.nextInt();
@@ -179,25 +179,26 @@ public class App {
                                         System.out
                                                 .println("Por favor ingrese los siguientes datos para agregar nevera ");
                                         System.out.println("Marca: ");
-                                        String marcaN = teclado.next();
+                                        String marcaN = teclado.nextLine();
                                         System.out.println("Precio Base: ");
                                         double precioN = teclado.nextDouble();
                                         System.out.println("Color: ");
-                                        String colorN = teclado.next();
-                                        System.out.println("Modelo: ");
-                                        String modeloN = teclado.next();
-                                        System.out.println("Fuente de alimentación: ");
-                                        String fuenteA = teclado.next();
-                                        System.out.println("Función dual (noFrost - No aplica)");
-                                        String funDual = teclado.next();
-                                        System.out.println("Capacidad x litros: ");
                                         teclado.nextLine();
+                                        String colorN = teclado.nextLine();
+                                        System.out.println("Modelo: ");
+                                        String modeloN = teclado.nextLine();
+                                        System.out.println("Fuente de alimentación: ");
+                                        String fuenteA = teclado.nextLine();
+                                        System.out.println("Función dual (noFrost - No aplica)");
+                                        String funDual = teclado.nextLine();
+                                        System.out.println("Capacidad x litros: ");
                                         double capacidadL = teclado.nextDouble();
                                         System.out.println("Tipo de panel de control: ");
-                                        String panelControl = teclado.next();
+                                        teclado.nextLine();
+                                        String panelControl = teclado.nextLine();
                                         System.out.println(
                                                 "Eficiencia de energía: A+++ - A++ - A+ - A - B - C - D - C - F - G - No aplica");
-                                        String eficienciaNev = teclado.next();
+                                        String eficienciaNev = teclado.nextLine();
 
                                         Nevera nevera = new Nevera(marcaN, precioN, colorN, modeloN, 0, eficienciaNev,
                                                 precioN, continuar, aggNev, precioN, precioN, fuenteA, funDual,
@@ -213,6 +214,12 @@ public class App {
                                         nevera.setCapacidadLitros(capacidadL);
                                         nevera.setTipoPaneldeControl(panelControl);
                                         nevera.setEficienciaEnergia(eficienciaNev);
+
+                                        // Llamada de métodos
+                                        nevera.CalcEficienciaEnergia();
+                                        nevera.CalcprecioBase();
+                                        nevera.CalcprecioFinal();
+                                        nevera.CalccostoMantenimiento();
 
                                         gestionNevera.agregarNevera(nevera);
                                         System.out.println();
@@ -365,12 +372,12 @@ public class App {
 
                                 case 5:
                                     // Caso 2.5: Ver info de Neveras
-                                    System.out.println("Información sobre las neveras ");
+                                    System.out.println("----Información sobre las neveras----");
                                     gestionNevera.mostrarNeveras();
                                     break;
 
                                 case 6:
-                                    // Caso 2.6: Filtrar por eficiencia energética
+                                    // Caso 2.6: Filtrar por función dual
                                     List<Nevera> neverasFiltradas = gestionNevera.filtrarPorFunciionDual();
                                     if (!neverasFiltradas.isEmpty()) {
                                         System.out.println("Neveras filtradas por función dual:");
@@ -383,10 +390,9 @@ public class App {
                                     break;
 
                                 case 7:
-                                    // Caso 2.7: Filtrar por función dual
+                                    // Caso 2.7: Filtrar por eficiencia energética
                                     System.out.println("Ingrese la función dual por la que quiere filtrar");
                                     System.out.println("A+++ - A++ - A+ - A - B - C - D - C - F - G - No aplica");
-                                    teclado.nextLine();
                                     String eficiencia = teclado.nextLine();
 
                                     gestionNevera.setEficiencia(eficiencia);
@@ -516,7 +522,7 @@ public class App {
 
                                         }
 
-                                        System.out.println("¿Desea agregar otro aire acondicionado? (S/N)");
+                                        System.out.println("¿Desea agregar otra licuadora? (S/N)");
                                         aggLic = teclado.next().charAt(0);
 
                                     } while (aggLic == 'S' || aggLic == 's');
@@ -718,10 +724,12 @@ public class App {
                                     break;
                             }
                         } while (!volverMenuPrincipal);
+                        break;
 
                     case 4:
                         char aggLav = 'S';
                         do {
+                            System.out.println("____ LAVADORA _____");
                             System.out.println("Marca: ");
                             teclado.nextLine();
                             String marcaLav = teclado.nextLine();
@@ -737,10 +745,12 @@ public class App {
                             System.out.println("Programas de lavado: ");
                             int lavados = teclado.nextInt();
                             System.out.println("Material de tina: ");
+                            teclado.nextLine();
                             String materialTina = teclado.nextLine();
                             System.out.println("Niveles de agua: ");
                             int nivelAgua = teclado.nextInt();
                             System.out.println("Tipo de panel de control: ");
+                            teclado.nextLine();
                             String panelControlLav = teclado.nextLine();
                             System.out.println(
                                     "Eficiencia de energía: A+++ - A++ - A+ - A - B - C - D - C - F - G - No aplica");
@@ -781,6 +791,99 @@ public class App {
                             System.out.print("¿Desea agregar otra lavadora? (S/N): ");
                             aggLav = teclado.next().charAt(0);
                         } while (aggLav == 'S' || aggLav == 's');
+                        break;
+
+                    case 5:
+                        char aggTv = 'S';
+                        do {
+                            System.out.println("_____ TELEVISOR _____");
+                            System.out.println("Marca: ");
+                            teclado.nextLine();
+                            String marcaTv = teclado.nextLine();
+                            System.out.println("Precio base: ");
+                            double precioBTv = teclado.nextDouble();
+                            System.out.println("Color: ");
+                            teclado.nextLine();
+                            String colorTv = teclado.nextLine();
+                            System.out.println("Modelo: ");
+                            String modeloTv = teclado.nextLine();
+                            System.out.println(
+                                    "Eficiencia energética: A+++ , A++ , A+ , A, B , C , D , E , F , G , NO APLICA ");
+                            String eficTv = teclado.nextLine();
+                            System.out.println("Resolucion de pantalla: ");
+                            String resolucion = teclado.nextLine();
+                            System.out.println("Pulgadas: ");
+                            int pulgadas = teclado.nextInt();
+                            System.out.println("Número de puertos HDMI: ");
+                            int hdmi = teclado.nextInt();
+                            System.out.println("Número de puertos USB: ");
+                            int usb = teclado.nextInt();
+                            System.out.println("Número de puertos VGA: ");
+                            int vga = teclado.nextInt();
+
+                            // Instancia de la clase Televisor
+                            Televisor televisor = new Televisor(marcaTv, precioBTv, colorTv, modeloTv, 0, eficTv,
+                                    0, 0, 0, 0, 0, null, resolucion, pulgadas, hdmi, usb, vga, 0, 0, 0);
+
+                            // Captura de datos
+                            televisor.setMarca(marcaTv);
+                            televisor.setPrecioBase(precioBTv);
+                            televisor.setColor(colorTv);
+                            televisor.setModelo(modeloTv);
+                            televisor.setEficienciaEnergia(eficTv);
+                            televisor.setResolucionPantalla(resolucion);
+                            televisor.setPulgadas(pulgadas);
+                            televisor.setNumPuertosHDMI(hdmi);
+                            televisor.setNumPuertosUSB(usb);
+                            televisor.setNumPuertosVGA(vga);
+
+                            // Llamada de métodos
+                            televisor.CalcEficienciaEnergia();
+                            televisor.CalcprecioBase();
+                            televisor.CalcprecioFinal();
+                            televisor.CalccostoMantenimiento();
+                            System.out.println();
+
+                            System.out.println("¡Televisor agregado con éxito!");
+                            System.out.println();
+
+                            System.out.println("Precio base + eficiencia energética: " + televisor.getPrecioBase());
+                            System.out.println("Costo de mantenimiento: " + televisor.getCostoMantTv());
+                            System.out.println("Precion final en $COP: " + televisor.getPrecioFinalTV());
+
+                            // Calcular consumo de energía y su precio si el usuario lo requiere
+                            System.out.println("¿Desea saber el consumo de energía y su precio? (1.Sí o 2.No)");
+                            int opcCalculoTv = teclado.nextInt();
+
+                            if (opcCalculoTv != 2) {
+                                System.out.println("Ingrese la potencia: ");
+                                float potenciaTv = teclado.nextFloat();
+                                System.out.println("Tiempo aproximado de funcionamiento");
+                                float tiempoFunTv = teclado.nextFloat();
+
+                                // Captura de datos
+                                televisor.setPotencia(potenciaTv);
+                                televisor.setTiempoFuncionamiento(tiempoFunTv);
+
+                                // Llamada de métodos
+                                televisor.CalcconsumoEnergia();
+                                televisor.CalcprecioConsumoEnergia();
+
+                                System.out.println(
+                                        "El consumo de energía en Kw/H es de: " + televisor.getConsumoEnergia());
+                                System.out.println("Tiene un costo de: " + televisor.getPrecioConsumo());
+                            } else {
+
+                            }
+
+                            System.out.println("¿Desea agregar otro televisor? (S/N)");
+                            aggTv = teclado.next().charAt(0);
+
+                        } while (aggTv == 'S' || aggTv == 's');
+                        break;
+
+                    case 6:
+                        System.exit(0);
                         break;
                     default:
                         System.out.println("Por favor ingrese una opción válida");

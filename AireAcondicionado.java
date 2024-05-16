@@ -87,6 +87,7 @@ public class AireAcondicionado<T, U, V> extends Electrodomesticos {
         this.precioFinalAire = precioFinalAire;
     }
 
+    // ---Inicio métodos---
     public void CalccostoMantenimiento() {
         totalMantenimiento = super.CalcprecioBase() * 0.07;
     }
@@ -103,5 +104,6 @@ public class AireAcondicionado<T, U, V> extends Electrodomesticos {
             precioFinalAire += 500;
         }
     }
+    // ---Fin métodos
 
 }

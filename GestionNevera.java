@@ -82,8 +82,9 @@ public class GestionNevera extends Nevera {
             }
         }
     }
+    // FIN CRUDL
 
-    // FILTROS
+    // INICIO FILTROS
     public List<String> filtradoEficienciaEnergetica(String eficiencia) {
         if (neveras != null) {
             Stream<Nevera> streamNeveras = neveras.stream();
@@ -109,5 +110,5 @@ public class GestionNevera extends Nevera {
             return new ArrayList<>();
         }
     }
-
+    // FIN FILTROS
 }
