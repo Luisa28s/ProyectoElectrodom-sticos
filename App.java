@@ -14,6 +14,7 @@ public class App {
         int opc = 0;
         char continuar = 'S';
         boolean volverMenuPrincipal = false;
+        System.out.println();
 
         try {
             do {
