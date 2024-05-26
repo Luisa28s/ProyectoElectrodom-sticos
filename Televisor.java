@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class Televisor extends Electrodomesticos {
     private String resolucionPantalla;
     private int pulgadas;
@@ -104,6 +106,23 @@ public class Televisor extends Electrodomesticos {
             precioFinalTV = precioBase + 10000;
         } else {
             precioFinalTV += 5000;
+        }
+    }
+
+    public static void detallesTelevisores(List<Televisor> televisores) {
+        for (Televisor televisor : televisores) {
+            System.out.println("Marca: " + televisor.getMarca());
+            System.out.println("Precio Base: " + televisor.getPrecioBase());
+            System.out.println("Color: " + televisor.getColor());
+            System.out.println("Modelo: " + televisor.getModelo());
+            System.out.println("Eficiencia Energética: " + televisor.getEficienciaEnergia());
+            System.out.println("Resolución de Pantalla: " + televisor.getResolucionPantalla());
+            System.out.println("Pulgadas: " + televisor.getPulgadas());
+            System.out.println("Número de Puertos HDMI: " + televisor.getNumPuertosHDMI());
+            System.out.println("Número de Puertos USB: " + televisor.getNumPuertosUSB());
+            System.out.println("Número de Puertos VGA: " + televisor.getNumPuertosVGA());
+            System.out.println("Precio Final del Televisor: " + televisor.getPrecioFinalTV());
+            System.out.println("----------------------------------------");
         }
     }
 

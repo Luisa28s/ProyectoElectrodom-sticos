@@ -6,13 +6,16 @@ import java.util.Scanner;
 public class App {
     public static void main(String[] args) {
         Scanner teclado = new Scanner(System.in);
+
+        // ---Inicio de instancias----
         GestionNevera gestionNevera = new GestionNevera(null, 0, null, null, 0, null, 0,
                 0, 0, 0, 0, null, null, 0, 0, null, null, 0, 0, 0, null, null);
-
         GestionLicuadora gestionLicuadora = new GestionLicuadora(null, 0, null, null, 0,
                 null, 0, 0, 0, 0, 0, null, 0, 0, null, 0, 0, 0, 0, null, 0, null);
-
         List<Lavadora<?, ?>> listaLavadoras = new ArrayList<>();
+        List<AireAcondicionado<Double, Double, String>> listaAires = new ArrayList<>();
+        List<Televisor> listaTelevisores = new ArrayList<>();
+        // ---Fin de instancias----
 
         int opc = 0;
         char continuar = 'S';
@@ -54,6 +57,7 @@ public class App {
                                 modeloA = teclado.nextLine();
                                 if (!modeloA.matches("^[a-zA-Z]+$")) {
                                     System.out.println("Debe ingresar obligatoriamente letras sin espacios");
+                                    System.out.print("Intentelo nuevamente: ");
                                 } else {
 
                                     entradaModelo = true;
@@ -69,6 +73,7 @@ public class App {
                                 eficienciaA = teclado.nextLine();
                                 if (!eficienciaA.matches("^(A\\+{0,3}|B|C|D|F|G|No aplica)$")) {
                                     System.out.println("Error: Eficiencia de energía no válida");
+                                    System.out.print("Intentelo nuevamente: ");
                                 } else {
                                     entradaEficiencia = true;
                                 }
@@ -116,6 +121,7 @@ public class App {
                             aireA.CalcprecioBase();
                             aireA.CalcprecioFinal();
                             aireA.CalccostoMantenimiento();
+                            listaAires.add(aireA);
                             System.out.println();
 
                             System.out.println("¡Aire agregado con éxito!");
@@ -149,6 +155,9 @@ public class App {
 
                             }
 
+                            System.out.println("-----Información de los aires acondicionados-----");
+                            AireAcondicionado.detallesAires(listaAires);
+                            System.out.println();
                             System.out.println("¿Desea agregar otro aire acondicionado? (S/N)");
                             aggAire = teclado.next().charAt(0);
 
@@ -181,6 +190,7 @@ public class App {
                                         System.out.println("------- Agregar nevera --------");
                                         System.out
                                                 .println("Por favor ingrese los siguientes datos para agregar nevera ");
+                                        teclado.nextLine();
                                         System.out.println("Marca: ");
                                         String marcaN = teclado.nextLine();
                                         System.out.println("Precio Base: ");
@@ -394,7 +404,7 @@ public class App {
 
                                 case 7:
                                     // Caso 2.7: Filtrar por eficiencia energética
-                                    System.out.println("Ingrese la función dual por la que quiere filtrar");
+                                    System.out.println("Ingrese la eficiencia energética por la que quiere filtrar");
                                     System.out.println("A+++ - A++ - A+ - A - B - C - D - C - F - G - No aplica");
                                     String eficiencia = teclado.nextLine();
 
@@ -735,23 +745,48 @@ public class App {
                             System.out.println("____ LAVADORA _____");
                             System.out.println("Marca: ");
                             teclado.nextLine();
-                            String marcaLav = teclado.nextLine();
+                            String marcaLav = "";
+                            boolean entradaMarca = false;
+                            // Validación de modelo
+                            while (!entradaMarca) {
+                                marcaLav = teclado.nextLine();
+                                if (!marcaLav.matches("^[a-zA-Z]+$")) {
+                                    System.out.println("Error. La marca ingresada no es válida");
+                                    System.out.print("Intentelo nuevamente: ");
+                                } else {
+
+                                    entradaMarca = true;
+                                }
+                            }
+
                             System.out.println("Precio Base: ");
                             double precioBasLav = teclado.nextDouble();
                             System.out.println("Color: ");
                             teclado.nextLine();
-                            String colorLav = teclado.nextLine();
+                            String colorLav = "";
+                            boolean entradaColor = false;
+                            // Validación de modelo
+                            while (!entradaColor) {
+                                colorLav = teclado.nextLine();
+                                if (!colorLav.matches("^[a-zA-Z]+$")) {
+                                    System.out.println("Error. El color ingresado no es válido");
+                                    System.out.print("Intentelo nuevamente: ");
+                                } else {
+
+                                    entradaColor = true;
+                                }
+                            }
                             System.out.println("Modelo: ");
                             String modeloLav = teclado.nextLine();
-                            System.out.println("Voltaje: ");
-                            Double voltajeLav = teclado.nextDouble();
+                            System.out.println("Voltaje (Puede ser número o letra): ");
+                            String voltajeLav = teclado.nextLine();
                             System.out.println("Programas de lavado: ");
                             int lavados = teclado.nextInt();
                             System.out.println("Material de tina: ");
                             teclado.nextLine();
                             String materialTina = teclado.nextLine();
-                            System.out.println("Niveles de agua: ");
-                            int nivelAgua = teclado.nextInt();
+                            System.out.println("Niveles de agua (Puede ser número o letra): ");
+                            String nivelAgua = teclado.nextLine();
                             System.out.println("Tipo de panel de control: ");
                             teclado.nextLine();
                             String panelControlLav = teclado.nextLine();
@@ -759,7 +794,7 @@ public class App {
                                     "Eficiencia de energía: A+++ - A++ - A+ - A - B - C - D - C - F - G - No aplica");
                             String eficienciaLav = teclado.nextLine();
 
-                            Lavadora<Double, Integer> lavadora = new Lavadora<>(marcaLav, precioBasLav, colorLav,
+                            Lavadora<?, ?> lavadora = new Lavadora<>(marcaLav, precioBasLav, colorLav,
                                     modeloLav, 0,
                                     eficienciaLav, 0, 0, 0, 0, 0, null, voltajeLav,
                                     lavados, materialTina, nivelAgua, panelControlLav, 0, 0, 0);
@@ -794,8 +829,34 @@ public class App {
                             System.out.println("Precio final en $COP: " + lavadora.getPrecioFinalLavadora());
                             System.out.println();
 
-                            System.out.println("Detalles de las lavadoras:");
+                            // Calcular consumo de energía y su precio si el usuario lo requiere
+                            System.out.println("¿Desea saber el consumo de energía y su precio? (1.Sí o 2.No)");
+                            int opcCalculoLav = teclado.nextInt();
+
+                            if (opcCalculoLav != 2) {
+                                System.out.println("Ingrese la potencia: ");
+                                float potenciaLav = teclado.nextFloat();
+                                System.out.println("Tiempo aproximado de funcionamiento");
+                                float tiempoFunLav = teclado.nextFloat();
+
+                                // Captura de datos
+                                lavadora.setPotencia(potenciaLav);
+                                lavadora.setTiempoFuncionamiento(tiempoFunLav);
+
+                                // Llamada de métodos
+                                lavadora.CalcconsumoEnergia();
+                                lavadora.CalcprecioConsumoEnergia();
+
+                                System.out.println(
+                                        "El consumo de energía en Kw/H es de: " + lavadora.getConsumoEnergia());
+                                System.out.println("Tiene un costo de: " + lavadora.getPrecioConsumo());
+                            } else {
+
+                            }
+
+                            System.out.println("-----Información de las lavadoras-----");
                             Lavadora.imprimirDetallesLavadoras(listaLavadoras);
+                            System.out.println();
                             System.out.print("¿Desea agregar otra lavadora? (S/N): ");
                             aggLav = teclado.next().charAt(0);
                         } while (aggLav == 'S' || aggLav == 's');
@@ -850,6 +911,7 @@ public class App {
                             televisor.CalcprecioBase();
                             televisor.CalcprecioFinal();
                             televisor.CalccostoMantenimiento();
+                            listaTelevisores.add(televisor);
                             System.out.println();
 
                             System.out.println("¡Televisor agregado con éxito!");
@@ -880,10 +942,14 @@ public class App {
                                 System.out.println(
                                         "El consumo de energía en Kw/H es de: " + televisor.getConsumoEnergia());
                                 System.out.println("Tiene un costo de: " + televisor.getPrecioConsumo());
+                                System.out.println();
                             } else {
 
                             }
 
+                            System.out.println("----Información de televisores----");
+                            Televisor.detallesTelevisores(listaTelevisores);
+                            System.out.println();
                             System.out.println("¿Desea agregar otro televisor? (S/N)");
                             aggTv = teclado.next().charAt(0);
 
@@ -907,5 +973,6 @@ public class App {
             System.out.println("Error inesperado: " + e.getMessage());
             e.printStackTrace();
         }
+        teclado.close();
     }
 }

@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class AireAcondicionado<T, U, V> extends Electrodomesticos {
     private T capacidadEnfriamiento;
     private U voltaje;
@@ -104,6 +106,23 @@ public class AireAcondicionado<T, U, V> extends Electrodomesticos {
             precioFinalAire += 500;
         }
     }
+
+    public static void detallesAires(List<AireAcondicionado<Double, Double, String>> aires) {
+        for (AireAcondicionado<Double, Double, String> aire : aires) {
+            System.out.println("Marca: " + aire.getMarca());
+            System.out.println("Precio Base: " + aire.getPrecioBase());
+            System.out.println("Color: " + aire.getColor());
+            System.out.println("Modelo: " + aire.getModelo());
+            System.out.println("Eficiencia Energética: " + aire.getEficienciaEnergia());
+            System.out.println("Capacidad de Enfriamiento: " + aire.getCapacidadEnfriamiento());
+            System.out.println("Voltaje: " + aire.getVoltaje());
+            System.out.println("Tipo de Motor: " + aire.getTipoMotor());
+            System.out.println("Material de Tubería: " + aire.getMaterialTuberia());
+            System.out.println("Precio Final del Aire Acondicionado: " + aire.getPrecioFinalAire());
+            System.out.println("----------------------------------------");
+        }
+    }
+
     // ---Fin métodos
 
 }

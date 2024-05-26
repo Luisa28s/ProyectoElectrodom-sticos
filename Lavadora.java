@@ -111,7 +111,7 @@ public class Lavadora<T, U> extends Electrodomesticos {
 
     public static void imprimirDetallesLavadoras(List<? extends Lavadora<?, ?>> lavadoras) {
         for (Lavadora<?, ?> lavadora : lavadoras) {
-            System.out.println("Marca: " + lavadora.marca);
+            System.out.println("Marca: " + lavadora.getMarca());
             System.out.println("Voltaje: " + lavadora.getVoltaje());
             System.out.println("Programas de Lavado: " + lavadora.getProgramasdeLavado());
             System.out.println("Material de Tina: " + lavadora.getMaterialdeTina());
