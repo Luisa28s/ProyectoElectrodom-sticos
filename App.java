@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
@@ -10,6 +11,8 @@ public class App {
 
         GestionLicuadora gestionLicuadora = new GestionLicuadora(null, 0, null, null, 0,
                 null, 0, 0, 0, 0, 0, null, 0, 0, null, 0, 0, 0, 0, null, 0, null);
+
+        List<Lavadora<?, ?>> listaLavadoras = new ArrayList<>();
 
         int opc = 0;
         char continuar = 'S';
@@ -741,7 +744,7 @@ public class App {
                             System.out.println("Modelo: ");
                             String modeloLav = teclado.nextLine();
                             System.out.println("Voltaje: ");
-                            Number voltajeLav = teclado.nextDouble();
+                            Double voltajeLav = teclado.nextDouble();
                             System.out.println("Programas de lavado: ");
                             int lavados = teclado.nextInt();
                             System.out.println("Material de tina: ");
@@ -756,7 +759,8 @@ public class App {
                                     "Eficiencia de energía: A+++ - A++ - A+ - A - B - C - D - C - F - G - No aplica");
                             String eficienciaLav = teclado.nextLine();
 
-                            Lavadora<?, ?> lavadora = new Lavadora<>(marcaLav, precioBasLav, colorLav, modeloLav, 0,
+                            Lavadora<Double, Integer> lavadora = new Lavadora<>(marcaLav, precioBasLav, colorLav,
+                                    modeloLav, 0,
                                     eficienciaLav, 0, 0, 0, 0, 0, null, voltajeLav,
                                     lavados, materialTina, nivelAgua, panelControlLav, 0, 0, 0);
 
@@ -777,6 +781,7 @@ public class App {
                             lavadora.CalcprecioBase();
                             lavadora.CalcprecioFinal();
                             lavadora.CalccostoMantenimiento();
+                            listaLavadoras.add(lavadora);
                             System.out.println();
 
                             System.out.println("¡Lavadora agregada con éxito!");
@@ -788,6 +793,9 @@ public class App {
 
                             System.out.println("Precio final en $COP: " + lavadora.getPrecioFinalLavadora());
                             System.out.println();
+
+                            System.out.println("Detalles de las lavadoras:");
+                            Lavadora.imprimirDetallesLavadoras(listaLavadoras);
                             System.out.print("¿Desea agregar otra lavadora? (S/N): ");
                             aggLav = teclado.next().charAt(0);
                         } while (aggLav == 'S' || aggLav == 's');

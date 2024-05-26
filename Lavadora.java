@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class Lavadora<T, U> extends Electrodomesticos {
     private T voltaje;
     private int programasdeLavado;
@@ -106,5 +108,18 @@ public class Lavadora<T, U> extends Electrodomesticos {
             precioFinalLavadora += 20000;
         }
     }
-    // ---Fin métodos----
+
+    public static void imprimirDetallesLavadoras(List<? extends Lavadora<?, ?>> lavadoras) {
+        for (Lavadora<?, ?> lavadora : lavadoras) {
+            System.out.println("Marca: " + lavadora.marca);
+            System.out.println("Voltaje: " + lavadora.getVoltaje());
+            System.out.println("Programas de Lavado: " + lavadora.getProgramasdeLavado());
+            System.out.println("Material de Tina: " + lavadora.getMaterialdeTina());
+            System.out.println("Niveles de Agua: " + lavadora.getNivelesdeAgua());
+            System.out.println("Tipo de Panel de Control: " + lavadora.getTipoPaneldeControl());
+            System.out.println("Precio Final de la Lavadora: " + lavadora.getPrecioFinalLavadora());
+            System.out.println("----------------------------------------");
+        }
+        // ---Fin métodos----
+    }
 }
